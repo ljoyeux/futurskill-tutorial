@@ -2,6 +2,6 @@
 <endpoints xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime" version="2.0">
   <endpoint
      name="HelloService"
-     implementation="fr.devlogic.tutorial.ws.Hello"
-     url-pattern="/ws/HelloWS"/>
+     implementation="fr.futurskill.tutorial.ws.Hello"
+     url-pattern="/ws/hello"/>
 </endpoints> 
