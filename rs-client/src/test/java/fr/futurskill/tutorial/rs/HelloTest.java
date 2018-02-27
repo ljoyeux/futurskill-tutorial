@@ -14,7 +14,7 @@ public class HelloTest {
 
     @Test
 	public void hello() {
-		System.out.println("Hello test");
+		System.out.println("Hello get");
 		
 		
 		Client client = JerseyClientBuilder.newClient();
