@@ -9,7 +9,7 @@
 
     <artifactId>rs-server</artifactId>
     <packaging>war</packaging>
-    <name>rs-server Maven Webapp</name>
+    <name>RS Server Webapp</name>
 
     <dependencies>
         <dependency>

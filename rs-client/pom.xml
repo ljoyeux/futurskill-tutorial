@@ -7,7 +7,7 @@
   </parent>
   
   <artifactId>rs-client</artifactId>
-  
+	<name>RS Client</name>
   <dependencies>
   	<dependency>
   		<groupId>junit</groupId>

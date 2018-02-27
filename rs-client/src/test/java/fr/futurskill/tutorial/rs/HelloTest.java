@@ -15,7 +15,11 @@ public class HelloTest {
 		
 		Client client = JerseyClientBuilder.newClient();
 		
-		WebTarget target = client.target("http://localhost:8080/rs-server").path("/rs/hello");
+		WebTarget target =
+				client.target("http://localhost:8080/rs-server")
+						.path("/rs/hello")
+						.queryParam("firstName", "Laurent")
+						.queryParam("lastName", "Joyeux");
 		
 		String response = target.request().get(String.class);
 		
