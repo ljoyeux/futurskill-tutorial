@@ -13,10 +13,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.glassfish.jersey.core</groupId>
             <artifactId>jersey-server</artifactId>
         </dependency>
@@ -27,7 +23,16 @@
 		<dependency>
 		    <groupId>org.glassfish.jersey.inject</groupId>
 		    <artifactId>jersey-hk2</artifactId>
-		</dependency>        
+		</dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-json-jackson</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>fr.futurskill.tutorial</groupId>
+            <artifactId>rs-model</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
