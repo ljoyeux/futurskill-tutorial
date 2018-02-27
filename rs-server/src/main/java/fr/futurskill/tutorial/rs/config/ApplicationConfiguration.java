@@ -1,5 +1,6 @@
 package fr.futurskill.tutorial.rs.config;
 
+import fr.futurskill.tutorial.rs.ImageService;
 import fr.futurskill.tutorial.rs.SimpleService;
 
 import javax.ws.rs.ApplicationPath;
@@ -25,6 +26,7 @@ public class ApplicationConfiguration extends Application
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(SimpleService.class);
+        resources.add(ImageService.class);
     }
 
 }
