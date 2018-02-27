@@ -17,6 +17,7 @@ public class SimpleService {
     @Path("/hello")
     @POST
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    @Produces(MediaType.TEXT_PLAIN)
     public String hello(Account account) {
         return "hello " + account.getFirstName() + " " + account.getLastName();
     }
