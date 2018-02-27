@@ -1,5 +1,8 @@
 package fr.futurskill.tutorial.rs;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Account {
     private String firstName;
     private String lastName;

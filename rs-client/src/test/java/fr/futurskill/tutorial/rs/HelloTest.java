@@ -31,8 +31,8 @@ public class HelloTest {
 	}
 
 	@Test
-    public void helloPost() {
-        System.out.println("Hello post");
+    public void helloPostJSON() {
+        System.out.println("Hello post json");
         Client client = JerseyClientBuilder.newClient();
 
         WebTarget target =
@@ -49,4 +49,24 @@ public class HelloTest {
 
 		System.out.println(response);
     }
+
+	@Test
+	public void helloPostXML() {
+		System.out.println("Hello post xml");
+		Client client = JerseyClientBuilder.newClient();
+
+		WebTarget target =
+				client.target("http://localhost:8080/rs-server")
+						.path("/rs/hello");
+
+		Account account = new Account();
+		account.setFirstName("Laurent");
+		account.setLastName("Joyeux");
+
+		Response post = target.request().post(Entity.entity(account, MediaType.APPLICATION_XML));
+
+		String response = post.readEntity(String.class);
+
+		System.out.println(response);
+	}
 }
