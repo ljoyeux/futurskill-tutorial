@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>fr.futurskill.tutorial</groupId>
+        <groupId>fr.futurskill.tutorial.ws</groupId>
         <artifactId>ws-tutorial-root</artifactId>
         <version>0.1-SNAPSHOT</version>
     </parent>
