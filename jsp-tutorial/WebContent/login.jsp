@@ -11,7 +11,7 @@
  <title>Login page</title>
 </head>
 <body>
-<jsp:useBean id="controleur" class="fr.devlogic.tutorial.jsp.Controleur" scope="request"/>
+<jsp:useBean id="controleur" class="fr.futurskill.tutorial.jsp.Controleur" scope="request"/>
 <jsp:setProperty property="*" name="controleur"/>
 <div>
 	<form action="submit.jsp">

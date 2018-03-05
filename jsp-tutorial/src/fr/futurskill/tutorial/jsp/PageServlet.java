@@ -1,4 +1,4 @@
-package fr.devlogic.tutorial.jsp;
+package fr.futurskill.tutorial.jsp;
 
 import java.io.IOException;
 import java.io.PrintWriter;

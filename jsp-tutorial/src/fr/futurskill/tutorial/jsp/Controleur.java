@@ -1,4 +1,4 @@
-package fr.devlogic.tutorial.jsp;
+package fr.futurskill.tutorial.jsp;
 
 import java.util.HashMap;
 import java.util.Map;

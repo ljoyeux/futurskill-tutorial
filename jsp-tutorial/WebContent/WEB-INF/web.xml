@@ -12,7 +12,7 @@
   
   <servlet>
   	<servlet-name>HelloServlet</servlet-name>
-  	<servlet-class>fr.devlogic.tutorial.jsp.PageServlet</servlet-class>
+  	<servlet-class>fr.futurskill.tutorial.jsp.PageServlet</servlet-class>
   	<load-on-startup>1</load-on-startup>
   </servlet>
   
