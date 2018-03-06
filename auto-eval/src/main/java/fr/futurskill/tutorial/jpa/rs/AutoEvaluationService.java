@@ -36,5 +36,4 @@ public class AutoEvaluationService {
 
         return null;
     }
-
 }

@@ -22,5 +22,4 @@ public class TicketsAutoEvaluationService {
     public TicketAutoEvaluation creer(String nom, Integer nombreTickets, @DefaultValue("2") Integer nbJours, Long moduleCalendrierId) {
         return ticketAutoEvaluationBean.ajoute(nom, nombreTickets, nbJours, moduleCalendrierId);
     }
-
 }
