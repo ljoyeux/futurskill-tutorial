@@ -6,6 +6,8 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Stateless
@@ -20,8 +22,10 @@ public class ModuleBean {
         Module module = new Module();
         module.setTitre(titre);
         module.setDescription(description);
+        module.setActif(true);
 
-        return em.merge(module);
+
+        return jpaToBean(em.merge(module));
     }
 
     public Module modifie(Long id, String titre, String description) {
@@ -30,7 +34,7 @@ public class ModuleBean {
         module.setTitre(titre);
         module.setDescription(description);
 
-        return em.merge(module);
+        return jpaToBean(em.merge(module));
     }
 
 
@@ -42,10 +46,30 @@ public class ModuleBean {
     }
 
     public List<Module> listeActif() {
-        return em.createQuery("SELECT m FROM Module m WHERE m.actif=true").getResultList();
+        return jpaToBean(em.createQuery("SELECT m FROM Module m WHERE m.actif=true").getResultList());
     }
 
     public List<Module> listeInactif() {
-        return em.createQuery("SELECT m FROM Module m WHERE m.actif=false").getResultList();
+        return jpaToBean(em.createQuery("SELECT m FROM Module m WHERE m.actif=false").getResultList());
+    }
+
+    public static Module jpaToBean(Module entity) {
+        Module bean = new Module();
+
+        bean.setId(entity.getId());
+        bean.setTitre(entity.getTitre());
+        bean.setDescription(entity.getDescription());
+        bean.setActif(entity.getActif());
+
+        return bean;
+    }
+
+    public static List<Module> jpaToBean(Collection<Module> entities) {
+        List<Module> beans = new ArrayList<Module>();
+        for(Module moduleEntity: entities) {
+            beans.add(jpaToBean(moduleEntity));
+        }
+
+        return beans;
     }
 }

@@ -1,16 +1,23 @@
 package fr.futurskill.tutorial.jpa.model;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 @Entity
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.PROPERTY)
 public class TicketAutoEvaluation implements Serializable {
 
     private static final long serialVersionUID = -702266599854348397L;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -25,9 +32,10 @@ public class TicketAutoEvaluation implements Serializable {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<AutoEvaluation> autoEvaluations;
 
-    private int nombreTickets;
+    private Integer nombreTickets;
 
     @Version
+    @XmlTransient
     private int version;
 
     public Long getId() {
@@ -54,11 +62,11 @@ public class TicketAutoEvaluation implements Serializable {
         this.moduleCalendrier = moduleCalendrier;
     }
 
-    public int getNombreTickets() {
+    public Integer getNombreTickets() {
         return nombreTickets;
     }
 
-    public void setNombreTickets(int nombreTickets) {
+    public void setNombreTickets(Integer nombreTickets) {
         this.nombreTickets = nombreTickets;
     }
 

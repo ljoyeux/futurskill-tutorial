@@ -27,7 +27,24 @@ public class TicketAutoEvaluationBean {
         ticketAutoEvaluation.setExpiration(new Date(System.currentTimeMillis() + nbJours * H24));
         ticketAutoEvaluation.setNom(nom);
 
-        return em.merge(ticketAutoEvaluation);
+        return jpaToBean(em.merge(ticketAutoEvaluation));
     }
 
+
+    public TicketAutoEvaluation get(Long ticketAutoEvaluationId) {
+        return jpaToBean(em.find(TicketAutoEvaluation.class, ticketAutoEvaluationId));
+    }
+
+    public static TicketAutoEvaluation jpaToBean(TicketAutoEvaluation entity) {
+        TicketAutoEvaluation bean = new TicketAutoEvaluation();
+
+        bean.setId(entity.getId());
+        bean.setNombreTickets(entity.getNombreTickets());
+        bean.setNom(entity.getNom());
+        bean.setExpiration(entity.getExpiration());
+        bean.setModuleCalendrier(ModuleCalendrierBean.jpaToBean(entity.getModuleCalendrier()));
+        bean.setAutoEvaluations(AutoEvaluationBean.jpaToBean(entity.getAutoEvaluations()));
+
+        return bean;
+    }
 }

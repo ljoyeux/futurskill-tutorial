@@ -14,10 +14,14 @@ public class ModuleService {
     @Inject
     ModuleBean moduleBean;
 
+    /*
+        ATTENTION : Il faut renseigner tous les noms des paramètres (@QueryParam())
+     */
+
     @Path("/creer")
     @GET
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public Module creer(String titre, String description) {
+    public Module creer(@QueryParam("titre") String titre, @QueryParam("description") String description) {
         return moduleBean.creer(titre, description);
     }
 
@@ -31,19 +35,19 @@ public class ModuleService {
     @Path("/modifie")
     @GET
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public Module modifie(Long id, String titre, String description) {
+    public Module modifie(@QueryParam("id") Long id, @QueryParam("titre") String titre, @QueryParam("description") String description) {
         return moduleBean.modifie(id, titre, description);
     }
 
     @Path("/active")
     @GET
-    public void active(Long id) {
+    public void active(@QueryParam("id") Long id) {
         moduleBean.activeModule(id, true);
     }
 
     @Path("/desactive")
     @GET
-    public void desactive(Long id) {
+    public void desactive(@QueryParam("id") Long id) {
         moduleBean.activeModule(id, false);
     }
 

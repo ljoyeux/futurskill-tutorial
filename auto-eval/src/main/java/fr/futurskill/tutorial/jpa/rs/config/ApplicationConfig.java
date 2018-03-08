@@ -2,6 +2,7 @@ package fr.futurskill.tutorial.jpa.rs.config;
 
 import fr.futurskill.tutorial.jpa.model.TicketAutoEvaluation;
 import fr.futurskill.tutorial.jpa.rs.AutoEvaluationService;
+import fr.futurskill.tutorial.jpa.rs.ModuleCalendrierService;
 import fr.futurskill.tutorial.jpa.rs.ModuleService;
 import fr.futurskill.tutorial.jpa.rs.TicketsAutoEvaluationService;
 
@@ -20,7 +21,7 @@ public class ApplicationConfig extends Application {
     public Set<Class<?>> getClasses() {
         Set<Class<?>> classes = new HashSet<Class<?>>();
 
-        classes.addAll(Arrays.asList(AutoEvaluationService.class, ModuleService.class, TicketsAutoEvaluationService.class));
+        classes.addAll(Arrays.asList(AutoEvaluationService.class, ModuleService.class, TicketsAutoEvaluationService.class, ModuleCalendrierService.class));
 
         return super.getClasses();
     }

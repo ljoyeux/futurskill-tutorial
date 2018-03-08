@@ -8,6 +8,8 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -30,20 +32,20 @@ public class ModuleCalendrierBean {
         return em.merge(moduleCalendrier);
     }
 
-    public void supprime(Long moduleCalendarId) {
-        ModuleCalendrier moduleCalendrier = em.find(ModuleCalendrier.class, moduleCalendarId);
+    public void supprime(Long moduleCalendrierd) {
+        ModuleCalendrier moduleCalendrier = em.find(ModuleCalendrier.class, moduleCalendrierd);
         em.remove(moduleCalendrier);
     }
 
     public List<ModuleCalendrier> liste(Date debut, Date fin) {
-        StringBuilder builder = new StringBuilder("SELECT mc FROM ModuleCalendrier mc WHERE 1=1");
+        StringBuilder builder = new StringBuilder("SELECT mc FROM ModuleCalendrier mc WHERE 1=1 ");
 
         if (debut != null) {
-            builder.append("AND mn.debut>=:debut");
+            builder.append("AND mc.debut>=:debut");
         }
 
         if (fin != null) {
-            builder.append("AND mn.fin<=:fin");
+            builder.append("AND mc.fin<=:fin");
         }
 
         Query query = em.createQuery(builder.toString());
@@ -57,6 +59,27 @@ public class ModuleCalendrierBean {
         }
 
         return query.getResultList();
+    }
+
+    public static ModuleCalendrier jpaToBean(ModuleCalendrier entity) {
+        ModuleCalendrier bean = new ModuleCalendrier();
+
+        bean.setId(entity.getId());
+        bean.setDebut(entity.getDebut());
+        bean.setFin(entity.getFin());
+        bean.setModule(ModuleBean.jpaToBean(entity.getModule()));
+
+        return bean;
+    }
+
+    public static List<ModuleCalendrier> jpaToBean(Collection<ModuleCalendrier> entities) {
+        List<ModuleCalendrier> beans = new ArrayList<ModuleCalendrier>();
+
+        for(ModuleCalendrier entity: entities) {
+            beans.add(jpaToBean(entity));
+        }
+
+        return beans;
     }
 
 }

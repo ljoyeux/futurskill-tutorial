@@ -6,9 +6,7 @@ import fr.futurskill.tutorial.jpa.model.TicketAutoEvaluation;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Stateless
 @LocalBean
@@ -18,7 +16,7 @@ public class AutoEvaluationBean {
 
 
     public AutoEvaluation creer(String nomTicket) {
-        List<TicketAutoEvaluation> tickets = em.createQuery("SELECT tae FROM TicketAutoEvaluation tae WHERE tae.nom=:nom AND tae.expiration<:date AND tae.nombreTickets>0 ORDER BY tae.expiration DESC")
+        List<TicketAutoEvaluation> tickets = em.createQuery("SELECT tae FROM TicketAutoEvaluation tae WHERE tae.nom=:nom AND tae.expiration>:date AND tae.nombreTickets>0 ORDER BY tae.expiration DESC")
                                      .setParameter("nom", nomTicket)
                                      .setParameter("date", new Date(System.currentTimeMillis())).getResultList();
 
@@ -35,10 +33,13 @@ public class AutoEvaluationBean {
         AutoEvaluation autoEvaluation = new AutoEvaluation();
         autoEvaluation.setDate(new Date(System.currentTimeMillis()));
 
+        autoEvaluation = em.merge(autoEvaluation);
+
         ticket.getAutoEvaluations().add(autoEvaluation);
+
         em.merge(ticket);
 
-        return autoEvaluation;
+        return jpaToBean(autoEvaluation);
     }
 
     public AutoEvaluation modifie(AutoEvaluation autoEvaluation) {
@@ -49,7 +50,7 @@ public class AutoEvaluationBean {
         autoEvaluationEntity.setPrenom(autoEvaluation.getPrenom());
         autoEvaluationEntity.setNumeroTelephone(autoEvaluation.getNumeroTelephone());
 
-        return em.merge(autoEvaluation);
+        return jpaToBean(em.merge(autoEvaluation));
     }
 
     public List<AutoEvaluation> listeParNomTicket(String nomTicket) {
@@ -61,7 +62,7 @@ public class AutoEvaluationBean {
             autoEvaluations.addAll(ticket.getAutoEvaluations());
         }
 
-        return autoEvaluations;
+        return jpaToBean(autoEvaluations);
     }
 
     public List<AutoEvaluation> listeParCalendrierModule(Long moduleCalendrierId) {
@@ -73,6 +74,29 @@ public class AutoEvaluationBean {
             autoEvaluations.addAll(ticket.getAutoEvaluations());
         }
 
-        return autoEvaluations;
+        return jpaToBean(autoEvaluations);
+    }
+
+    public static AutoEvaluation jpaToBean(AutoEvaluation entity) {
+        AutoEvaluation bean = new AutoEvaluation();
+
+        bean.setId(entity.getId());
+        bean.setEvaluation(entity.getEvaluation());
+        bean.setDate(entity.getDate());
+        bean.setNom(entity.getNom());
+        bean.setPrenom(entity.getPrenom());
+        bean.setNumeroTelephone(entity.getNumeroTelephone());
+
+        return bean;
+    }
+
+    public static List<AutoEvaluation> jpaToBean(Collection<AutoEvaluation> entities) {
+        List<AutoEvaluation> beans = new ArrayList<AutoEvaluation>();
+
+        for(AutoEvaluation ae: entities) {
+            beans.add(jpaToBean(ae));
+        }
+
+        return beans;
     }
 }

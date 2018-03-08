@@ -1,9 +1,14 @@
 package fr.futurskill.tutorial.jpa.model;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
 @Entity
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.PROPERTY)
 public class Module implements Serializable {
 
     private static final long serialVersionUID = -2744426364595993615L;
@@ -28,7 +33,7 @@ public class Module implements Serializable {
         this.id = id;
     }
 
-    public String getTitle() {
+    public String getTitre() {
         return title;
     }
 
