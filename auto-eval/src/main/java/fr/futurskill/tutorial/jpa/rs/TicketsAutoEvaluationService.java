@@ -11,7 +11,7 @@ import javax.ws.rs.core.MediaType;
 public class TicketsAutoEvaluationService {
 
     @Inject
-    TicketAutoEvaluationBean ticketAutoEvaluationBean;
+    private TicketAutoEvaluationBean ticketAutoEvaluationBean;
 
     @Path("/creer")
     @GET

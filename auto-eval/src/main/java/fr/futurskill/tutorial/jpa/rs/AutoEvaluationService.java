@@ -12,7 +12,7 @@ import java.util.List;
 public class AutoEvaluationService {
 
     @Inject
-    AutoEvaluationBean autoEvaluationBean;
+    private AutoEvaluationBean autoEvaluationBean;
 
     @Path("/modifie")
     @POST

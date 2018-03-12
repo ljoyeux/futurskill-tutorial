@@ -37,6 +37,7 @@ public class ModuleCalendrierBean {
         em.remove(moduleCalendrier);
     }
 
+    @SuppressWarnings("unchecked")
     public List<ModuleCalendrier> liste(Date debut, Date fin) {
         StringBuilder builder = new StringBuilder("SELECT mc FROM ModuleCalendrier mc WHERE 1=1 ");
 
@@ -72,8 +73,9 @@ public class ModuleCalendrierBean {
         return bean;
     }
 
+    @SuppressWarnings("unused")
     public static List<ModuleCalendrier> jpaToBean(Collection<ModuleCalendrier> entities) {
-        List<ModuleCalendrier> beans = new ArrayList<ModuleCalendrier>();
+        List<ModuleCalendrier> beans = new ArrayList<>();
 
         for(ModuleCalendrier entity: entities) {
             beans.add(jpaToBean(entity));

@@ -45,10 +45,12 @@ public class ModuleBean {
         em.merge(module);
     }
 
+    @SuppressWarnings("unchecked")
     public List<Module> listeActif() {
         return jpaToBean(em.createQuery("SELECT m FROM Module m WHERE m.actif=true").getResultList());
     }
 
+    @SuppressWarnings("unchecked")
     public List<Module> listeInactif() {
         return jpaToBean(em.createQuery("SELECT m FROM Module m WHERE m.actif=false").getResultList());
     }
@@ -64,8 +66,9 @@ public class ModuleBean {
         return bean;
     }
 
+    @SuppressWarnings("WeakerAccess")
     public static List<Module> jpaToBean(Collection<Module> entities) {
-        List<Module> beans = new ArrayList<Module>();
+        List<Module> beans = new ArrayList<>();
         for(Module moduleEntity: entities) {
             beans.add(jpaToBean(moduleEntity));
         }

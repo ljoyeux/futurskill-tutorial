@@ -13,7 +13,7 @@ import java.util.Date;
 @LocalBean
 public class TicketAutoEvaluationBean {
     @PersistenceContext
-    EntityManager em;
+    private EntityManager em;
 
 
     private static final long H24 = 24 * 3600 * 1000;
@@ -35,6 +35,7 @@ public class TicketAutoEvaluationBean {
         return jpaToBean(em.find(TicketAutoEvaluation.class, ticketAutoEvaluationId));
     }
 
+    @SuppressWarnings("WeakerAccess")
     public static TicketAutoEvaluation jpaToBean(TicketAutoEvaluation entity) {
         TicketAutoEvaluation bean = new TicketAutoEvaluation();
 

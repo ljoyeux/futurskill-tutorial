@@ -12,7 +12,7 @@ import java.util.List;
 public class ModuleService {
 
     @Inject
-    ModuleBean moduleBean;
+    private ModuleBean moduleBean;
 
     /*
         ATTENTION : Il faut renseigner tous les noms des paramètres (@QueryParam())
@@ -39,12 +39,14 @@ public class ModuleService {
         return moduleBean.modifie(id, titre, description);
     }
 
+    @SuppressWarnings("VoidMethodAnnotatedWithGET")
     @Path("/active")
     @GET
     public void active(@QueryParam("id") Long id) {
         moduleBean.activeModule(id, true);
     }
 
+    @SuppressWarnings("VoidMethodAnnotatedWithGET")
     @Path("/desactive")
     @GET
     public void desactive(@QueryParam("id") Long id) {

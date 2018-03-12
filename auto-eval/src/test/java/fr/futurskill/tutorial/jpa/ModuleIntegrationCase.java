@@ -4,7 +4,6 @@ import fr.futurskill.tutorial.jpa.model.AutoEvaluation;
 import fr.futurskill.tutorial.jpa.model.Module;
 import fr.futurskill.tutorial.jpa.model.ModuleCalendrier;
 import fr.futurskill.tutorial.jpa.model.TicketAutoEvaluation;
-import org.junit.Before;
 import org.junit.Test;
 
 import javax.ws.rs.InternalServerErrorException;
@@ -57,10 +56,6 @@ public class ModuleIntegrationCase {
 
         assert module.getDescription()!=null;
         assert ! module.getDescription().isEmpty();
-
-
-
-        System.out.println(module);
 
         return module;
     }

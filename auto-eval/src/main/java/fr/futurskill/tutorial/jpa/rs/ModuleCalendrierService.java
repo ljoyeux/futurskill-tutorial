@@ -17,7 +17,7 @@ import java.util.List;
 public class ModuleCalendrierService {
 
     @Inject
-    ModuleCalendrierBean moduleCalendrierBean;
+    private ModuleCalendrierBean moduleCalendrierBean;
 
     private static final String DATE_FORMAT = "dd/MM/yyyy";
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
@@ -47,6 +47,7 @@ public class ModuleCalendrierService {
 
     @Path("/supprime")
     @GET
+    @SuppressWarnings("VoidMethodAnnotatedWithGET")
     public void supprime(@QueryParam("moduleCalendrirerId") Long moduleCalendrirerId) {
         moduleCalendrierBean.supprime(moduleCalendrirerId);
     }

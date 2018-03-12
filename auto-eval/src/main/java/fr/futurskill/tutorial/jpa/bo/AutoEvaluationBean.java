@@ -16,6 +16,7 @@ public class AutoEvaluationBean {
 
 
     public AutoEvaluation creer(String nomTicket) {
+        @SuppressWarnings("unchecked")
         List<TicketAutoEvaluation> tickets = em.createQuery("SELECT tae FROM TicketAutoEvaluation tae WHERE tae.nom=:nom AND tae.expiration>:date AND tae.nombreTickets>0 ORDER BY tae.expiration DESC")
                                      .setParameter("nom", nomTicket)
                                      .setParameter("date", new Date(System.currentTimeMillis())).getResultList();
@@ -54,10 +55,11 @@ public class AutoEvaluationBean {
     }
 
     public List<AutoEvaluation> listeParNomTicket(String nomTicket) {
+        @SuppressWarnings("unchecked")
         List<TicketAutoEvaluation> tickets = em.createQuery("SELECT tae FROM TicketAutoEvaluation tae WHERE tae.nom=:nom ORDER BY tae.expiration DESC")
                 .setParameter("nom", nomTicket).getResultList();
 
-        List<AutoEvaluation> autoEvaluations = new ArrayList<AutoEvaluation>();
+        List<AutoEvaluation> autoEvaluations = new ArrayList<>();
         for (TicketAutoEvaluation ticket : tickets) {
             autoEvaluations.addAll(ticket.getAutoEvaluations());
         }
@@ -66,10 +68,11 @@ public class AutoEvaluationBean {
     }
 
     public List<AutoEvaluation> listeParCalendrierModule(Long moduleCalendrierId) {
+        @SuppressWarnings("unchecked")
         List<TicketAutoEvaluation> tickets = em.createQuery("SELECT tae FROM TicketAutoEvaluation tae WHERE tae.moduleCalendrier.id=:id  ORDER BY tae.expiration DESC")
                 .setParameter("id", moduleCalendrierId).getResultList();
 
-        List<AutoEvaluation> autoEvaluations = new ArrayList<AutoEvaluation>();
+        List<AutoEvaluation> autoEvaluations = new ArrayList<>();
         for (TicketAutoEvaluation ticket : tickets) {
             autoEvaluations.addAll(ticket.getAutoEvaluations());
         }
@@ -77,6 +80,7 @@ public class AutoEvaluationBean {
         return jpaToBean(autoEvaluations);
     }
 
+    @SuppressWarnings("WeakerAccess")
     public static AutoEvaluation jpaToBean(AutoEvaluation entity) {
         AutoEvaluation bean = new AutoEvaluation();
 
@@ -91,7 +95,7 @@ public class AutoEvaluationBean {
     }
 
     public static List<AutoEvaluation> jpaToBean(Collection<AutoEvaluation> entities) {
-        List<AutoEvaluation> beans = new ArrayList<AutoEvaluation>();
+        List<AutoEvaluation> beans = new ArrayList<>();
 
         for(AutoEvaluation ae: entities) {
             beans.add(jpaToBean(ae));

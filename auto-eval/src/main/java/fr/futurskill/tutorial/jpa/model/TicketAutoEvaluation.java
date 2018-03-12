@@ -86,10 +86,12 @@ public class TicketAutoEvaluation implements Serializable {
         this.autoEvaluations = autoEvaluations;
     }
 
+    @SuppressWarnings("unused")
     public int getVersion() {
         return version;
     }
 
+    @SuppressWarnings("unused")
     public void setVersion(int version) {
         this.version = version;
     }
