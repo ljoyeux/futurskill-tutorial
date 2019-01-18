@@ -20,10 +20,16 @@
             <artifactId>junit</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.sun.xml.ws</groupId>
-            <artifactId>jaxws-rt</artifactId>
-            <scope>runtime</scope>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>7.0</version>
+            <scope>provided</scope>
         </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.sun.xml.ws</groupId>-->
+            <!--<artifactId>jaxws-rt</artifactId>-->
+            <!--<scope>runtime</scope>-->
+        <!--</dependency>-->
     </dependencies>
     <build>
         <finalName>ws-server</finalName>
